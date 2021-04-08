@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: hello-run
+  namespace: default
+spec:
+  resources: {}
+  serviceAccountName: ""
+  taskRef:
+    name: hello
+status:
+  podName: ""

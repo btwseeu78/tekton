@@ -1,0 +1,35 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: example-task
+spec:
+  params:
+  - name: workspacefile
+    type: string
+    description: The path to he files
+    default: /workspace
+  - name: deepworkspace
+    type: string
+    description: Path inside
+    default: /workspace/workspace
+  resources:
+    inputs:
+    - name: workspace
+      type: git
+    outputs: 
+    - name: output
+  steps:
+  - name: list-workdir
+    image: ubuntu
+    command:
+    - ls
+    args:
+    - $(params.workspacefile)
+  - name: list-more-inside
+    image: ubuntu
+    command:
+    - ls
+    args:
+    - $(params.deepworkspace)
+
+      
